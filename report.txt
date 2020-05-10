@@ -1,0 +1,29 @@
+TensorFlow 2.0 Upgrade Script
+-----------------------------
+Converted 1 files
+Detected 5 issues that require attention
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+File: models/bert/run_pretraining.py
+--------------------------------------------------------------------------------
+models/bert/run_pretraining.py:37:8: ERROR: Using member tf.flags in deprecated module tf.flags. tf.flags and tf.app.flags have been removed, please use the argparse or absl modules if you need command line parsing.
+models/bert/run_pretraining.py:95:0: ERROR: Using member tf.flags.DEFINE_string in deprecated module tf.flags. tf.flags and tf.app.flags have been removed, please use the argparse or absl modules if you need command line parsing.
+models/bert/run_pretraining.py:101:0: ERROR: Using member tf.flags.DEFINE_string in deprecated module tf.flags. tf.flags and tf.app.flags have been removed, please use the argparse or absl modules if you need command line parsing.
+models/bert/run_pretraining.py:107:0: ERROR: Using member tf.flags.DEFINE_string in deprecated module tf.flags. tf.flags and tf.app.flags have been removed, please use the argparse or absl modules if you need command line parsing.
+models/bert/run_pretraining.py:113:0: ERROR: Using member tf.flags.DEFINE_string in deprecated module tf.flags. tf.flags and tf.app.flags have been removed, please use the argparse or absl modules if you need command line parsing.
+================================================================================
+Detailed log follows:
+
+================================================================================
+--------------------------------------------------------------------------------
+Processing file 'models/bert/run_pretraining.py'
+ outputting to 'models/bert/run_pretraining.py'
+--------------------------------------------------------------------------------
+
+37:8: ERROR: Using member tf.flags in deprecated module tf.flags. tf.flags and tf.app.flags have been removed, please use the argparse or absl modules if you need command line parsing.
+95:0: ERROR: Using member tf.flags.DEFINE_string in deprecated module tf.flags. tf.flags and tf.app.flags have been removed, please use the argparse or absl modules if you need command line parsing.
+101:0: ERROR: Using member tf.flags.DEFINE_string in deprecated module tf.flags. tf.flags and tf.app.flags have been removed, please use the argparse or absl modules if you need command line parsing.
+107:0: ERROR: Using member tf.flags.DEFINE_string in deprecated module tf.flags. tf.flags and tf.app.flags have been removed, please use the argparse or absl modules if you need command line parsing.
+113:0: ERROR: Using member tf.flags.DEFINE_string in deprecated module tf.flags. tf.flags and tf.app.flags have been removed, please use the argparse or absl modules if you need command line parsing.
+--------------------------------------------------------------------------------
+
