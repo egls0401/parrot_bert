@@ -20,7 +20,7 @@ from __future__ import print_function
 """
 mkdir -p data/sentence-embeddings/bert/pretrain-ckpt/traindata
 python models/bert/create_pretraining_data.py \
-  --input_file=data/processed/pretrain.txt \
+  --input_file=data/processed/hankyung_until_10_page.txt \
   --output_file=data/sentence-embeddings/bert/pretrain-ckpt/traindata/tfrecord \
   --vocab_file=data/sentence-embeddings/bert/pretrain-ckpt/vocab.txt \
   --do_lower_case=False \

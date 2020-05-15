@@ -19,13 +19,13 @@ from __future__ import print_function
 
 """Run masked LM/next sentence masked_lm pre-training for BERT."""
 """
-  python models/bert/run_pretraining.py \
+  nohup sh -c "python models/bert/run_pretraining.py \
     --input_file=data/sentence-embeddings/bert/pretrain-ckpt/traindata/tfrecord \
     --output_dir=data/sentence-embeddings/bert/pretrain-ckpt \
     --do-train=True --do_eval=True \
     --bert_config_file=data/sentence-embeddings/bert/pretrain-ckpt/bert_config.json \
     --train_batch_size=32 --max_seq_length=128 --max_predictions_per_seq=20 \
-    --learning_rate=2e-5
+    --learning_rate=2e-5" > bert-pretrain.log
 """
 
 import os, sys
