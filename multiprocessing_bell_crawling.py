@@ -1,5 +1,3 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 import pandas as pd
 import os
 import time
@@ -7,9 +5,6 @@ import pdb
 from bs4 import BeautifulSoup
 from time import sleep
 import requests
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 import re
 import logging
 from itertools import repeat
@@ -17,7 +12,7 @@ from multiprocessing import Pool, freeze_support
 
 """
 nohup으로 코드를 돌려보자
-nohup sh -c "python bell_economy_crawling.py" > bell.log &
+nohup "python multiprocessing_bell_economy_crawling.py" > bell.log &
 """
 
 headers = { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36'}
@@ -79,6 +74,8 @@ def scrapping(link, page):
 def main():
     for page in range(1, 3):
         article_links = get_links(page)
+        # # 아래 코드는 안돌아감
+        # poo.map(scraipping, article_links, page)
         with Pool(processes=4) as pool:
             pool.starmap(scrapping, zip(article_links, repeat(page)))
 
