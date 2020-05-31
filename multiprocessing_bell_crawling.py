@@ -12,7 +12,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import re
 import logging
-from multiprocessing import Pool, Process
+from itertools import repeat
+from multiprocessing import Pool, freeze_support
 
 """
 nohup으로 코드를 돌려보자
@@ -53,30 +54,7 @@ def get_links(page):
 
     return article_links
 
-# def scrapping(article_links):
-#     for link in article_links:
-#         try:
-#             response = requests.get(link, headers=headers)
-#         except Exception as e:
-#             logger.error(str(e))
-#             time.sleep(5)
-#             continue
-#         else:
-#             try:
-#                 html = response.text
-#                 soup = BeautifulSoup(html, 'html.parser')
-#                 soup = soup.select('#article_main')[0]
-#                 content = soup.getText()
-#                 # logger.info(content)
-#                 # index = int(page / 100) + 1 # 100페이지씩 기사 묶음 / 총 140개 정도 나와야함
-#                 save_as_txt(content, 1)
-#                 logger.info("{} 기사 크롤링 완료".format(link))
-#             except Exception as e:
-#                 logger.error("{} 기사 크롤링 중 오류 발생".format(link))
-#                 logger.error(str(e))
-#                 continue
-
-def scrapping(link):
+def scrapping(link, page):
     try:
         response = requests.get(link, headers=headers)
     except Exception as e:
@@ -90,8 +68,8 @@ def scrapping(link):
             soup = soup.select('#article_main')[0]
             content = soup.getText()
             # logger.info(content)
-            # index = int(page / 100) + 1 # 100페이지씩 기사 묶음 / 총 140개 정도 나와야함
-            save_as_txt(content, 1)
+            index = int(page / 100) + 1 # 100페이지씩 기사 묶음 / 총 140개 정도 나와야함
+            save_as_txt(content, index)
             logger.info("{} 기사 크롤링 완료".format(link))
         except Exception as e:
             logger.error("{} 기사 크롤링 중 오류 발생".format(link))
@@ -101,8 +79,8 @@ def scrapping(link):
 def main():
     for page in range(1, 3):
         article_links = get_links(page)
-        pool = Pool(processes=4)
-        pool.map(scrapping, article_links)
+        with Pool(processes=4) as pool:
+            pool.starmap(scrapping, zip(article_links, repeat(page)))
 
 if __name__ == '__main__':
     """
